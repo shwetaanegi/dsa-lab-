@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define SIZE 5 
+#define SIZE 5  
 int queue[SIZE], front = -1, rear = -1;
 int isFull() {
     return (rear == SIZE - 1);
@@ -11,7 +11,7 @@ void enqueue(int value) {
     if (isFull()) {
         printf("Queue is FULL! Cannot insert %d\n", value);
     } else {
-        if (front == -1) front = 0;
+        if (front == -1) front = 0;  
         queue[++rear] = value;
         printf("Inserted %d\n", value);
     }
@@ -42,12 +42,37 @@ void display() {
     }
 }
 int main() {
-    enqueue(10);
-    enqueue(20);
-    enqueue(30);
-    display();
-    peek();
-    dequeue();
-    display();
-    return 0;
+    int choice, value;
+
+    while (1) {
+        printf("1. Enqueue\n");
+        printf("2. Dequeue\n");
+        printf("3. Peek\n");
+        printf("4. Display\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter value to insert: ");
+                scanf("%d", &value);
+                enqueue(value);
+                break;
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                peek();
+                break;
+            case 4:
+                display();
+                break;
+            case 5:
+                printf("Exiting program.\n");
+                return 0;
+            default:
+                printf("Invalid choice! Try again.\n");
+        }
+    }
 }
